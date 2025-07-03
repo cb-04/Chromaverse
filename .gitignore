@@ -18,3 +18,5 @@ build/
 # system
 .DS_Store
 Thumbs.db
+
+firebaseKey.json
