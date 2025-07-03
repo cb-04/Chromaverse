@@ -1,0 +1,61 @@
+body {
+  position: relative;
+  background: url('citylights.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #ffcc00;
+  font-family: 'Comfortaa', cursive;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* adjust for fade effect */
+  pointer-events: none;
+}
+
+canvas {
+  background: rgba(30, 30, 30, 0.85);
+  border: 3px solid #ff003c;
+  box-shadow: 0 0 60px rgba(255, 0, 60, 0.6);
+}
+
+.controls button,
+.theme-buttons button {
+  background: rgba(255, 255, 150, 0.8); /* soft yellow shade */
+  color: #222;
+  border: none;
+  font-family: 'Comfortaa', cursive;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.controls button:hover,
+.theme-buttons button:hover {
+  background: #ffcc00;
+  color: #ff003c;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(255, 204, 0, 0.4);
+}
+
+#gallery {
+  background: rgba(0, 0, 0, 0.5); /* Dark transparent overlay like city night reflections */
+  border-radius: 12px;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+
+.gallery-img {
+  border: 2px solid #ff003c;
+  box-shadow: 0 0 25px rgba(255, 0, 60, 0.7);
+}
+
+.watermark {
+  color: #ffcc00;
+  font-family: 'Pacifico', cursive;
+}

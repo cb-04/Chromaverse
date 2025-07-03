@@ -1,0 +1,44 @@
+body {
+  background: url('rainy.avif') no-repeat center 80% fixed;
+  background-size: cover;
+  color: #2e3a59;
+}
+
+
+
+canvas {
+  background: rgba(255, 255, 255, 0.6);
+  border: 3px solid #6c7a89;
+  box-shadow: 0 0 50px rgba(108, 122, 137, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.controls button,
+.theme-buttons button {
+  background: rgba(255, 255, 255, 0.3);
+  color: #2e3a59;
+  border: 2px solid #6c7a89;
+}
+
+.controls button:hover,
+.theme-buttons button:hover {
+  background: rgba(174, 194, 203, 0.6);
+  color: #1f2d3d;
+}
+
+#gallery {
+  background: rgba(174, 194, 203, 0.2); /* Soft misty blue-gray overlay */
+  border-radius: 12px;
+  padding: 1rem;
+  backdrop-filter: blur(3px);
+}
+
+
+.gallery-img {
+  border: 2px solid #6c7a89;
+  box-shadow: 0 0 20px rgba(108, 122, 137, 0.6);
+}
+
+.watermark {
+  color: #2e3a59;
+}

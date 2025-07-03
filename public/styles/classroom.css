@@ -1,0 +1,40 @@
+body {
+  background: url('archi.avif') no-repeat center center fixed;
+  background-size: cover;
+  color: #000000;
+}
+
+canvas {
+  background: #ffffffee;
+  border: 3px solid #000000;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.controls button,
+.theme-buttons button {
+  background: #f9f9f9;
+  color: #000000;
+  border: 2px solid #000000;
+}
+
+.controls button:hover,
+.theme-buttons button:hover {
+  background: #e0e0e0;
+}
+
+#gallery {
+  background: rgba(255, 255, 255, 0.6); /* White chalkboard softness */
+  border-radius: 12px;
+  padding: 1rem;
+  backdrop-filter: blur(2px);
+}
+
+
+.gallery-img {
+  border: 2px solid #000000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.watermark {
+  color: #000000;
+}

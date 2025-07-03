@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chromaverse</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link id="themeLink" rel="stylesheet" href="">
+  <style>
+    .hidden { display: none; }
+    .logout-btn {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      padding: 6px 14px;
+      background: #ff5c5c;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .logout-btn:hover {
+      background: #e64545;
+    }
+    body.auth-active {
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+      background-size: cover;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+<body class="auth-active">
+  <!-- 🔑 Auth Section -->
+  <div id="authSection">
+    <h2>Welcome to Chromaverse!</h2>
+    <input type="text" id="username" placeholder="Username" /><br>
+    <input type="password" id="password" placeholder="Password" /><br>
+    <button id="loginBtn">Login</button>
+    <button id="signupBtn">Signup</button>
+  </div>
+
+  <!-- 🎨 Canvas Section -->
+  <div id="canvasSection" class="hidden">
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    <div class="container">
+      <!-- Theme switcher buttons -->
+      <div class="theme-buttons">
+        <button id="rainyBtn">Mist & Melancholy</button>
+        <button id="japanBtn">Tokyo Glow</button>
+        <button id="classroomBtn">After-School</button>
+      </div>
+
+      <!-- Drawing canvas -->
+      <canvas id="draw" width="800" height="500"></canvas>
+
+      <!-- Control buttons -->
+      <div class="controls">
+        <button id="brushBtn">Brush</button>
+        <button id="lineBtn">Line</button>
+        <button id="dashedBtn">Dashed</button>
+        <input type="color" id="colorPicker" value="#000000" />
+        <input type="range" id="lineWidth" min="1" max="20" value="3" />
+        <button id="clearBtn">Clear Canvas</button>
+        <button id="saveBtn">Save</button>
+        <button id="downloadBtn">Download</button>
+        <button id="clearGalleryBtn">Clear Gallery</button>
+      </div>
+
+      <!-- Gallery section -->
+      <div id="gallery" class="gallery"></div>
+    </div>
+
+    <!-- Watermark -->
+    <p class="watermark">Created by Chandrabali</p>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="main.js"></script>
+  <script>
+    const authSection = document.getElementById('authSection');
+    const canvasSection = document.getElementById('canvasSection');
+
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert("Login successful!");
+        authSection.classList.add('hidden');
+        canvasSection.classList.remove('hidden');
+        document.body.classList.remove('auth-active'); // 🌟 Remove fixed background
+      } else {
+        alert(data.message || "Login failed!");
+      }
+    });
+
+    document.getElementById('signupBtn').addEventListener('click', async () => {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const res = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert("Signup successful! You can now login.");
+      } else {
+        alert(data.message || "Signup failed!");
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      const res = await fetch('/api/logout', { method: 'POST' });
+      if (res.ok) {
+        alert("Logged out!");
+        authSection.classList.remove('hidden');
+        canvasSection.classList.add('hidden');
+        document.body.classList.add('auth-active'); // 🌟 Bring back fixed background
+      } else {
+        alert("Logout failed!");
+      }
+    });
+  </script>
+</body>
+</html>
